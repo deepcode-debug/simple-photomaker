@@ -183,9 +183,9 @@ images = generate_image_no_gradio(
 ## Result
 
 <p align="center" style="display: flex; align-items: center; justify-content: center;">
-  <img src="./examples/newton_man/newton_0.jpg" alt="Before" width="400" height="600" style="margin-right: 10px;">
+  <img src="./examples/newton_man/newton_0.jpg" alt="Before" width="300"  style="margin-right: 10px;">
   <span style="font-size: 10em; margin: 0 10px;">   =====>  </span>
-  <img src="./examples/newton_man/generated_image_0.png" alt="After" width="400" height="600" style="margin-left: 10px;">
+  <img src="./examples/newton_man/generated_image_0.png" alt="After" width="300"  style="margin-left: 10px;">
 </p>
 
 ## Troubleshooting
