@@ -1,0 +1,14 @@
+diffusers==0.29.0
+torch==2.0.0
+torchvision==0.15.1
+transformers
+accelerate
+safetensors
+einops
+onnxruntime-gpu
+spaces
+omegaconf
+peft
+huggingface-hub==0.25.0 
+insightface==0.7.3
+numpy<2
