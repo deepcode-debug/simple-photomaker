@@ -167,6 +167,27 @@ images = generate_image_no_gradio(
 )
 ```
 
+# Experiment
+
+## Code
+
+```python
+images = generate_image_no_gradio(
+    ["examples/newton_man/newton_0.jpg"],
+    "instagram photo, portrait photo of a woman img, colorful, perfect face, natural skin, hard shadows, film grain",
+    style_name="Fantasy",
+    num_steps=70
+)
+```
+
+## Result
+
+<p align="center" style="display: flex; align-items: center; justify-content: center;">
+  <img src="./examples/newton_man/newton_0.jpg" alt="Before" width="300" style="margin-right: 10px;">
+  <span style="font-size: 2em; margin: 0 10px;">➡️</span>
+  <img src="./examples/newton_man/generated_image_0.png" alt="After" width="300" style="margin-left: 10px;">
+</p>
+
 ## Troubleshooting
 
 - **"Cannot find the trigger word 'img' in text prompt"**: Make sure your prompt includes "img" after the subject (e.g., "woman img" not just "woman")
