@@ -19,6 +19,7 @@ from face_utils import FaceAnalysis2, analyze_faces
 from style_template import styles
 from aspect_ratio_template import aspect_ratios
 
+
 # global variable
 base_model_path = 'SG161222/RealVisXL_V4.0'
 face_detector = FaceAnalysis2(providers=['CPUExecutionProvider', 'CUDAExecutionProvider'], allowed_modules=['detection', 'recognition'])

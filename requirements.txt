@@ -12,5 +12,5 @@ peft
 huggingface-hub==0.25.0 
 insightface==0.7.3
 numpy<2
-gradio==5.25.2
-Pillow==11.1.0
+gradio
+Pillow
