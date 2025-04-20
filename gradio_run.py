@@ -32,81 +32,81 @@ def create_theme_presets():
     theme_data = {
         "dream_world_themes": [
             {
-                "name": "Magical Forest",
-                "prompt": "a child img exploring a magical forest with glowing mushrooms and fairy lights, fantasy, dreamy atmosphere, vibrant colors",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "(No style)",
+                "prompt": "{prompt}",
+                "negative_prompt": "",
                 "style_name": "Fantasy",
                 "num_steps": 60,
                 "style_strength_ratio": 25,
                 "guidance_scale": 6.0
             },
             {
-                "name": "Space Adventure",
-                "prompt": "a child img as an astronaut exploring a colorful nebula space, planets in background, cartoon style, vibrant colors, whimsical, dreamy",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Cinematic",
+                "prompt": "cinematic still {prompt} . emotional, harmonious, vignette, highly detailed, high budget, bokeh, cinemascope, moody, epic, gorgeous, film grain, grainy",
+                "negative_prompt": "anime, cartoon, graphic, text, painting, crayon, graphite, abstract, glitch, deformed, mutated, ugly, disfigured",
                 "style_name": "Anime",
                 "num_steps": 55,
                 "style_strength_ratio": 30,
                 "guidance_scale": 5.5
             },
             {
-                "name": "Candy Kingdom",
-                "prompt": "a child img in a kingdom made of candy and sweets, lollipop trees, chocolate rivers, cotton candy clouds, vibrant colors, whimsical, fun",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Disney Character",
+                "prompt": "A Pixar animation character of {prompt} . pixar-style, studio anime, Disney, high-quality",
+                "negative_prompt": "lowres, bad anatomy, bad hands, text, bad eyes, bad arms, bad legs, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, grayscale, noisy, sloppy, messy, grainy, highly detailed, ultra textured, photo",
                 "style_name": "Artistic",
                 "num_steps": 50,
                 "style_strength_ratio": 25,
                 "guidance_scale": 5.0
             },
             {
-                "name": "Underwater World",
-                "prompt": "a child img as a mermaid/merman swimming underwater with colorful fish and coral reefs, bubbles, sunbeams filtering through water, fantasy, dreamy",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Digital Art",
+                "prompt": "concept art {prompt} . digital artwork, illustrative, painterly, matte painting, highly detailed",
+                "negative_prompt": "photo, photorealistic, realism, ugly",
                 "style_name": "Fantasy",
                 "num_steps": 55,
                 "style_strength_ratio": 20,
                 "guidance_scale": 5.5
             },
             {
-                "name": "Cloud City",
-                "prompt": "a child img standing on fluffy clouds, floating castles in sky, rainbow bridges, flying creatures, dreamlike atmosphere, whimsical, bright",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Photographic (Default)",
+                "prompt": "cinematic photo {prompt} . 35mm photograph, film, bokeh, professional, 4k, highly detailed",
+                "negative_prompt": "drawing, painting, crayon, sketch, graphite, impressionist, noisy, blurry, soft, deformed, ugly",
                 "style_name": "Fantasy",
                 "num_steps": 50,
                 "style_strength_ratio": 25,
                 "guidance_scale": 5.0
             },
             {
-                "name": "Fairy Tale",
-                "prompt": "a child img in a fairy tale scene with castles, dragons, unicorns, magic wands, storybook style, vibrant colors, fantastical",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Fantasy art",
+                "prompt": "ethereal fantasy concept art of {prompt} . magnificent, celestial, ethereal, painterly, epic, majestic, magical, fantasy art, cover art, dreamy",
+                "negative_prompt": "photographic, realistic, realism, 35mm film, dslr, cropped, frame, text, deformed, glitch, noise, noisy, off-center, deformed, cross-eyed, closed eyes, bad anatomy, ugly, disfigured, sloppy, duplicate, mutated, black and white",
                 "style_name": "Fantasy",
                 "num_steps": 60,
                 "style_strength_ratio": 25,
                 "guidance_scale": 6.0
             },
             {
-                "name": "Toy World",
-                "prompt": "a child img in a world of giant toys, teddy bears, toy soldiers, building blocks, cartoon style, vibrant colors, playful, dreamy",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Neonpunk",
+                "prompt": "neonpunk style {prompt} . cyberpunk, vaporwave, neon, vibes, vibrant, stunningly beautiful, crisp, detailed, sleek, ultramodern, magenta highlights, dark purple shadows, high contrast, cinematic, ultra detailed, intricate, professional",
+                "negative_prompt": "painting, drawing, illustration, glitch, deformed, mutated, cross-eyed, ugly, disfigured",
                 "style_name": "Artistic",
                 "num_steps": 50,
                 "style_strength_ratio": 25,
                 "guidance_scale": 5.0
             },
             {
-                "name": "Dinosaur Adventure",
-                "prompt": "a child img exploring a prehistoric world with friendly dinosaurs, lush jungle, volcanoes in distance, cartoon style, vibrant colors",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Enhance",
+                "prompt": "breathtaking {prompt} . award-winning, professional, highly detailed",
+                "negative_prompt": "ugly, deformed, noisy, blurry, distorted, grainy",
                 "style_name": "Artistic",
                 "num_steps": 55,
                 "style_strength_ratio": 25,
                 "guidance_scale": 5.5
             },
             {
-                "name": "Comic Book Hero",
-                "prompt": "a child img as a superhero in comic book style, bright colors, dynamic pose, comic panel background, speech bubbles, onomatopoeia",
-                "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
+                "name": "Comic book",
+                "prompt": "comic {prompt} . graphic illustration, comic art, graphic novel art, vibrant, highly detailed",
+                "negative_prompt": "photograph, deformed, glitch, noisy, realistic, stock photo",
                 "style_name": "Artistic",
                 "num_steps": 50,
                 "style_strength_ratio": 30,
@@ -121,10 +121,27 @@ def create_theme_presets():
                 "style_strength_ratio": 20,
                 "guidance_scale": 5.0,
                 "seasons": ["spring with flowers and butterflies", "summer with beach and sunshine", "autumn with falling leaves", "winter with snow and festivities"]
+            },
+            {
+                "name": "Lowpoly",
+                "prompt": "low-poly style {prompt} . low-poly game art, polygon mesh, jagged, blocky, wireframe edges, centered composition",
+                "negative_prompt": "noisy, sloppy, messy, grainy, highly detailed, ultra textured, photo",
+                "style_name": "Artistic",
+                "num_steps": 50,
+                "style_strength_ratio": 25,
+                "guidance_scale": 5.0
+            },
+            {
+                "name": "Line art",
+                "prompt": "line art drawing {prompt} . professional, sleek, modern, minimalist, graphic, line art, vector graphics",
+                "negative_prompt": "anime, photorealistic, 35mm film, deformed, glitch, blurry, noisy, off-center, deformed, cross-eyed, closed eyes, bad anatomy, ugly, disfigured, mutated, realism, realistic, impressionism, expressionism, oil, acrylic",
+                "style_name": "Artistic",
+                "num_steps": 50,
+                "style_strength_ratio": 25,
+                "guidance_scale": 5.0
             }
         ]
     }
-    
     with open(THEMES_FILE, 'w') as f:
         json.dump(theme_data, f, indent=2)
 
@@ -161,18 +178,25 @@ def update_season_dropdown(theme_name):
     else:
         return gr.Dropdown(choices=[], visible=False, label="Season")
 
-def update_theme_params(theme_name, season=None):
-    """Update the UI with parameters from selected theme"""
+def update_theme_params(theme_name, season=None, custom_prompt=None):
+    """Update the UI with parameters from selected theme and inject custom prompt"""
     theme = get_theme_by_name(theme_name)
     if not theme:
         return "", "", "", 50, 25, 5.0
     
-    prompt = theme["prompt"]
-    if season and "[season]" in prompt:
-        prompt = prompt.replace("[season]", season)
+    prompt_template = theme["prompt"]
+    
+    # Inject custom prompt if provided
+    final_prompt = prompt_template
+    if custom_prompt:
+        final_prompt = prompt_template.replace("{prompt}", custom_prompt)
+    
+    # Handle season replacement if applicable
+    if season and "[season]" in final_prompt:
+        final_prompt = final_prompt.replace("[season]", season)
         
     return (
-        prompt, 
+        final_prompt, 
         theme["negative_prompt"], 
         theme["style_name"],
         theme["num_steps"],
@@ -206,6 +230,7 @@ def generate_images(
     uploaded_files, 
     theme_name, 
     season, 
+    custom_prompt,
     prompt, 
     negative_prompt, 
     style_name, 
@@ -307,14 +332,21 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
                 visible=False,
                 info="Select a season for the theme"
             )
+            
+            # Add custom prompt input
+            custom_prompt = gr.Textbox(
+                label="Custom Prompt",
+                placeholder="Enter a custom prompt (e.g., 'a child img in a forest')",
+                info="Enter your custom prompt to replace {prompt} in the theme template",
+            )
     
     # Advanced Parameters Section
     with gr.Accordion("🔧 Advanced Parameters", open=False):
         with gr.Row():
             with gr.Column():
                 prompt = gr.Textbox(
-                    label="Prompt",
-                    info="Must include 'img' after the subject",
+                    label="Final Prompt",
+                    info="The final prompt after template processing",
                     lines=3
                 )
                 negative_prompt = gr.Textbox(
@@ -381,16 +413,26 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
         outputs=season_dropdown
     )
     
-    # Update parameters when theme or season changes
+    # Update parameters when theme, season, or custom prompt changes
+    def update_all_params(theme_name, season, custom_prompt):
+        return update_theme_params(theme_name, season, custom_prompt)
+        
+    # Connect all three input changes to update parameters
     theme_dropdown.change(
-        fn=update_theme_params,
-        inputs=[theme_dropdown, season_dropdown],
+        fn=update_all_params,
+        inputs=[theme_dropdown, season_dropdown, custom_prompt],
         outputs=[prompt, negative_prompt, style_name, num_steps, style_strength, guidance_scale]
     )
     
     season_dropdown.change(
-        fn=update_theme_params,
-        inputs=[theme_dropdown, season_dropdown],
+        fn=update_all_params,
+        inputs=[theme_dropdown, season_dropdown, custom_prompt],
+        outputs=[prompt, negative_prompt, style_name, num_steps, style_strength, guidance_scale]
+    )
+    
+    custom_prompt.change(
+        fn=update_all_params,
+        inputs=[theme_dropdown, season_dropdown, custom_prompt],
         outputs=[prompt, negative_prompt, style_name, num_steps, style_strength, guidance_scale]
     )
     
@@ -401,6 +443,7 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
             upload,
             theme_dropdown,
             season_dropdown,
+            custom_prompt,
             prompt,
             negative_prompt,
             style_name,
@@ -423,6 +466,7 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
         - Make sure the prompt includes 'img' after mentioning the subject
         - Higher step counts produce better quality but take longer
         - If you're not satisfied with the results, try a different seed value
+        - Use the custom prompt field to personalize your images
         
         ## About Dream World Photo Generator
         
