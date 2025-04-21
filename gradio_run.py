@@ -1,4 +1,16 @@
-from run import generate_image_no_gradio
+from run import (
+    pipe, 
+    device, 
+    face_detector, 
+    apply_style, 
+    styles, 
+    aspect_ratios,
+    analyze_faces, 
+    torch, 
+    np, 
+    load_image,
+    TF
+)
 import gradio as gr
 import json
 import os
@@ -8,7 +20,6 @@ import shutil
 from PIL import Image
 import io
 import glob
-        
 
 # Constants
 IMG_DIR = "img"
@@ -36,18 +47,18 @@ def create_theme_presets():
                 "prompt": "{prompt}",
                 "negative_prompt": "",
                 "style_name": "Fantasy",
-                "num_steps": 60,
-                "style_strength_ratio": 25,
-                "guidance_scale": 6.0
+                "num_steps": 50,
+                "style_strength_ratio": 20,
+                "guidance_scale": 5.0
             },
             {
                 "name": "Cinematic",
                 "prompt": "cinematic still {prompt} . emotional, harmonious, vignette, highly detailed, high budget, bokeh, cinemascope, moody, epic, gorgeous, film grain, grainy",
                 "negative_prompt": "anime, cartoon, graphic, text, painting, crayon, graphite, abstract, glitch, deformed, mutated, ugly, disfigured",
                 "style_name": "Anime",
-                "num_steps": 55,
-                "style_strength_ratio": 30,
-                "guidance_scale": 5.5
+                "num_steps": 50,
+                "style_strength_ratio": 20,
+                "guidance_scale": 5.0
             },
             {
                 "name": "Disney Character",
@@ -55,7 +66,7 @@ def create_theme_presets():
                 "negative_prompt": "lowres, bad anatomy, bad hands, text, bad eyes, bad arms, bad legs, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, grayscale, noisy, sloppy, messy, grainy, highly detailed, ultra textured, photo",
                 "style_name": "Artistic",
                 "num_steps": 50,
-                "style_strength_ratio": 25,
+                "style_strength_ratio": 20,
                 "guidance_scale": 5.0
             },
             {
@@ -63,9 +74,9 @@ def create_theme_presets():
                 "prompt": "concept art {prompt} . digital artwork, illustrative, painterly, matte painting, highly detailed",
                 "negative_prompt": "photo, photorealistic, realism, ugly",
                 "style_name": "Fantasy",
-                "num_steps": 55,
+                "num_steps": 50,
                 "style_strength_ratio": 20,
-                "guidance_scale": 5.5
+                "guidance_scale": 5.0
             },
             {
                 "name": "Photographic (Default)",
@@ -73,7 +84,7 @@ def create_theme_presets():
                 "negative_prompt": "drawing, painting, crayon, sketch, graphite, impressionist, noisy, blurry, soft, deformed, ugly",
                 "style_name": "Fantasy",
                 "num_steps": 50,
-                "style_strength_ratio": 25,
+                "style_strength_ratio": 20,
                 "guidance_scale": 5.0
             },
             {
@@ -81,9 +92,9 @@ def create_theme_presets():
                 "prompt": "ethereal fantasy concept art of {prompt} . magnificent, celestial, ethereal, painterly, epic, majestic, magical, fantasy art, cover art, dreamy",
                 "negative_prompt": "photographic, realistic, realism, 35mm film, dslr, cropped, frame, text, deformed, glitch, noise, noisy, off-center, deformed, cross-eyed, closed eyes, bad anatomy, ugly, disfigured, sloppy, duplicate, mutated, black and white",
                 "style_name": "Fantasy",
-                "num_steps": 60,
-                "style_strength_ratio": 25,
-                "guidance_scale": 6.0
+                "num_steps": 50,
+                "style_strength_ratio": 20,
+                "guidance_scale": 5.0
             },
             {
                 "name": "Neonpunk",
@@ -91,7 +102,7 @@ def create_theme_presets():
                 "negative_prompt": "painting, drawing, illustration, glitch, deformed, mutated, cross-eyed, ugly, disfigured",
                 "style_name": "Artistic",
                 "num_steps": 50,
-                "style_strength_ratio": 25,
+                "style_strength_ratio": 20,
                 "guidance_scale": 5.0
             },
             {
@@ -99,9 +110,9 @@ def create_theme_presets():
                 "prompt": "breathtaking {prompt} . award-winning, professional, highly detailed",
                 "negative_prompt": "ugly, deformed, noisy, blurry, distorted, grainy",
                 "style_name": "Artistic",
-                "num_steps": 55,
-                "style_strength_ratio": 25,
-                "guidance_scale": 5.5
+                "num_steps": 50,
+                "style_strength_ratio": 20,
+                "guidance_scale": 5.0
             },
             {
                 "name": "Comic book",
@@ -109,15 +120,15 @@ def create_theme_presets():
                 "negative_prompt": "photograph, deformed, glitch, noisy, realistic, stock photo",
                 "style_name": "Artistic",
                 "num_steps": 50,
-                "style_strength_ratio": 30,
-                "guidance_scale": 5.5
+                "style_strength_ratio": 20,
+                "guidance_scale": 5.0
             },
             {
                 "name": "Seasons Calendar",
                 "prompt": "a child img in a [season] themed scene, calendar style, vibrant colors, seasonal elements, whimsical",
                 "negative_prompt": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, scary, creepy, dark, sinister",
                 "style_name": "Photographic (Default)",
-                "num_steps": 55,
+                "num_steps": 50,
                 "style_strength_ratio": 20,
                 "guidance_scale": 5.0,
                 "seasons": ["spring with flowers and butterflies", "summer with beach and sunshine", "autumn with falling leaves", "winter with snow and festivities"]
@@ -128,7 +139,7 @@ def create_theme_presets():
                 "negative_prompt": "noisy, sloppy, messy, grainy, highly detailed, ultra textured, photo",
                 "style_name": "Artistic",
                 "num_steps": 50,
-                "style_strength_ratio": 25,
+                "style_strength_ratio": 20,
                 "guidance_scale": 5.0
             },
             {
@@ -137,7 +148,7 @@ def create_theme_presets():
                 "negative_prompt": "anime, photorealistic, 35mm film, deformed, glitch, blurry, noisy, off-center, deformed, cross-eyed, closed eyes, bad anatomy, ugly, disfigured, mutated, realism, realistic, impressionism, expressionism, oil, acrylic",
                 "style_name": "Artistic",
                 "num_steps": 50,
-                "style_strength_ratio": 25,
+                "style_strength_ratio": 20,
                 "guidance_scale": 5.0
             }
         ]
@@ -182,7 +193,7 @@ def update_theme_params(theme_name, season=None, custom_prompt=None):
     """Update the UI with parameters from selected theme and inject custom prompt"""
     theme = get_theme_by_name(theme_name)
     if not theme:
-        return "", "", "", 50, 25, 5.0
+        return "", "", "", 50, 20, 5.0
     
     prompt_template = theme["prompt"]
     
@@ -226,6 +237,81 @@ def process_images(uploaded_files):
     
     return image_paths
 
+# Direct implementation of image generation (bypassing run.py to have exact same behavior as app.py)
+def generate_photomaker_image(
+    image_paths,
+    prompt,
+    negative_prompt,
+    style_name,
+    num_steps,
+    style_strength_ratio,
+    guidance_scale,
+    seed
+):
+    # Check for trigger word
+    image_token_id = pipe.tokenizer.convert_tokens_to_ids(pipe.trigger_word)
+    input_ids = pipe.tokenizer.encode(prompt)
+    if image_token_id not in input_ids:
+        raise ValueError(f"Cannot find the trigger word '{pipe.trigger_word}' in text prompt! Please add 'img' to your prompt.")
+
+    if input_ids.count(image_token_id) > 1:
+        raise ValueError(f"Cannot use multiple trigger words '{pipe.trigger_word}' in text prompt!")
+
+    # Determine output dimensions - using square format (1:1 aspect ratio) as in the original app
+    output_w, output_h = 1024, 1024  # Default to square format like the original
+
+    # Apply the style template
+    prompt, negative_prompt = apply_style(style_name, prompt, negative_prompt)
+
+    input_id_images = []
+    for img_path in image_paths:
+        input_id_images.append(load_image(img_path))
+    
+    id_embed_list = []
+
+    for img in input_id_images:
+        img = np.array(img)
+        img = img[:, :, ::-1]  # RGB to BGR
+        faces = analyze_faces(face_detector, img)
+        if len(faces) > 0:
+            id_embed_list.append(torch.from_numpy((faces[0]['embedding'])))
+
+    if len(id_embed_list) == 0:
+        raise ValueError("No face detected, please update the input face image(s)")
+    
+    id_embeds = torch.stack(id_embed_list)
+
+    generator = torch.Generator(device=device).manual_seed(seed)
+
+    print("Start inference...")
+    print(f"[Debug] Seed: {seed}")
+    print(f"[Debug] Prompt: {prompt}")
+    print(f"[Debug] Neg Prompt: {negative_prompt}")
+    
+    start_merge_step = int(float(style_strength_ratio) / 100 * num_steps)
+    if start_merge_step > 30:
+        start_merge_step = 30
+    print(f"[Debug] Start merge step: {start_merge_step}")
+    
+    images = pipe(
+        prompt=prompt,
+        width=output_w,
+        height=output_h,
+        input_id_images=input_id_images,
+        negative_prompt=negative_prompt,
+        num_images_per_prompt=1,
+        num_inference_steps=num_steps,
+        start_merge_step=start_merge_step,
+        generator=generator,
+        guidance_scale=guidance_scale,
+        id_embeds=id_embeds,
+        image=None,  # No sketch image
+        adapter_conditioning_scale=0.0,  # Disable adapter
+        adapter_conditioning_factor=0.0,  # Disable adapter
+    ).images
+    
+    return images
+
 def generate_images(
     uploaded_files, 
     theme_name, 
@@ -262,9 +348,8 @@ def generate_images(
     
     # Import the actual generation function
     try:
-       
-        # This will call the actual image generation from PhotoMaker
-        generated_images = generate_image_no_gradio(
+        # Use our direct implementation for exact same behavior
+        generated_images = generate_photomaker_image(
             image_paths=image_paths,
             prompt=prompt,
             negative_prompt=negative_prompt,
@@ -314,7 +399,6 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
                 file_count="multiple",
                 label="Upload 1-5 photos of the child",
                 file_types=["image"],
-                # info="For best results: face clearly visible, different angles, good lighting"
             )
         
         # Theme Selection Section
@@ -352,7 +436,8 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
                 negative_prompt = gr.Textbox(
                     label="Negative Prompt",
                     info="What to avoid in the image",
-                    lines=2
+                    lines=2,
+                    value="nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry"
                 )
                 style_name = gr.Textbox(label="Style Name")
             
@@ -361,15 +446,15 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
                     minimum=20, 
                     maximum=100, 
                     value=50, 
-                    step=5, 
+                    step=1, 
                     label="Number of Steps",
                     info="Higher = better quality but slower"
                 )
                 style_strength = gr.Slider(
-                    minimum=5, 
+                    minimum=15, 
                     maximum=50, 
-                    value=25, 
-                    step=5, 
+                    value=20, 
+                    step=1, 
                     label="Style Strength",
                     info="Between 15-50 recommended"
                 )
@@ -385,7 +470,7 @@ with gr.Blocks(title="Dream World Photo Generator") as demo:
             num_outputs = gr.Slider(
                 minimum=1, 
                 maximum=4, 
-                value=1, 
+                value=2,  # Default from app.py
                 step=1, 
                 label="Number of Images to Generate"
             )

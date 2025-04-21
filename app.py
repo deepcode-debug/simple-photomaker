@@ -431,4 +431,4 @@ def get_example():
     
 #     gr.Markdown(article)
     
-# demo.launch()
+# demo.launch(share=True)
