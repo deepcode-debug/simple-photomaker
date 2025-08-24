@@ -1,7 +1,7 @@
 diffusers==0.29.0
-torch==2.0.0
-torchvision==0.15.1
-transformers
+torch==2.4.0
+torchvision>=0.15.1
+transformers<=4.49.0
 accelerate
 safetensors
 einops
@@ -9,8 +9,9 @@ onnxruntime-gpu
 spaces
 omegaconf
 peft
-huggingface-hub==0.25.0 
+huggingface-hub==0.25.2
 insightface==0.7.3
 numpy<2
+pydantic==2.10.6
 gradio
 Pillow
