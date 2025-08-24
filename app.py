@@ -47,7 +47,7 @@ photomaker_ckpt = hf_hub_download(repo_id="TencentARC/PhotoMaker-V2", filename="
 if device == "mps":
     torch_dtype = torch.float16
 else:
-    torch_dtype = torch.bfloat16
+    torch_dtype = torch.float16
     
 # load adapter
 adapter = T2IAdapter.from_pretrained(
